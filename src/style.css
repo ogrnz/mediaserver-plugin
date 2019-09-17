@@ -1,15 +1,3 @@
-.PLU_button{
-	font-size: 2em; 
-	margin: 10px; 
-	float: right;
-}
-
-#PLU_bck_5 {
-	border-right : 1px solid #ad1457;
-	padding-right: 10px;
-	margin-right:0;
-}
-
 .controls{
   position: absolute;
   padding-left: 2px;
