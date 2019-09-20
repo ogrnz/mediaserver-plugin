@@ -1,5 +1,11 @@
 class Control {
 
+	/**
+	 * TODO
+	 * - add touch support
+	 * - add back button controls
+	 **/
+
 	constructor(id, symbol, time, container){
 		this.id = id
 		this.symbol = symbol
@@ -24,7 +30,6 @@ class Control {
 
 		return this.effect
 	}
-
 
 	clickButton(){
 		this.changeAudioTime()
