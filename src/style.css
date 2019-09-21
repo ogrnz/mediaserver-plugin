@@ -17,6 +17,35 @@
 }
 
 .fade-in{
-  z-index : 999999;
+  z-index: 999999;
   opacity: 0.9;
+}
+
+.touch {
+    opacity: .5;
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 999;
+    margin: 5% 0;
+}
+
+#padL {
+    background: red;
+}
+
+#padR {
+    background: green;
+}
+
+.PLU_button{
+	font-size: 2em; 
+	margin: 40px 10px 10px 10px; 
+	float: right;
+}
+
+#PLU_bck_5 {
+	border-right : 1px solid #ad1457;
+	padding-right: 10px;
+	margin-right:0;
 }
