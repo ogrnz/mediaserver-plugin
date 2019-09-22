@@ -59,6 +59,7 @@ class Control {
 }
 
 class Touch extends Control {
+    
     constructor(id, time, container, title, symbol) {
         super(id, time, container, title, symbol)
         this.createTouch()
