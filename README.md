@@ -4,7 +4,7 @@ Adds youtube like keyboard controls to Unige's Mediaserver website.
 
 ## Installation
 Chrome : https://chrome.google.com/webstore/detail/mediaserver-forward-back/ccpfhfcdbfiheikdoleanbobhaoioked  
-Firefox : download the plugin-firefox.xpi file in this repo and drag n' drop it on your Firefox window.
+Firefox : https://addons.mozilla.org/en-US/firefox/addon/mediaserver-unige-controls/
 
 ## Usage
 Controls:
