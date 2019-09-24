@@ -13,6 +13,16 @@ class Control {
         this.createEffect()
     }
 
+    togglePause() {
+        if (this.container.paused) {
+            this.container.play()
+        }
+        else {
+            this.container.pause()
+        }
+        console.log('togglePause')
+    }
+
     insert(referenceNode, newNode) {
         referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
     }
@@ -59,7 +69,7 @@ class Control {
 }
 
 class Touch extends Control {
-    
+
     constructor(id, time, container, title, symbol) {
         super(id, time, container, title, symbol)
         this.createTouch()
@@ -151,7 +161,14 @@ for (let i in pads) {
         if (elapsed < 500 && elapsed > 0) {
             pads[i].changeAudioTime(time)
         }
+        else { //one tap
+            but_back_5s.togglePause()
+        }
         lastTap = new Date().getTime()
+    })
+
+    pads[i].pad.addEventListener('click', function (e) {
+        but_back_5s.togglePause()
     })
 }
 
@@ -168,5 +185,9 @@ document.onkeydown = function (e) {
     }
     if (e.keyCode == '39' && !e.shiftKey) { //right
         but_forward_5s.changeAudioTime()
+    }
+    if (e.keyCode == 32) { //spacebar
+        e.preventDefault()
+        but_back_5s.togglePause()
     }
 }
