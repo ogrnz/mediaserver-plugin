@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "MediaServer Unige controls",
-  "version": "2.2",
+  "version": "2.3",
 
   "description": "Adds youtube-like keyboard controls to Unige's Mediaserver website.",
 
