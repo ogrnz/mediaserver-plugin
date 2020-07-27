@@ -13,6 +13,15 @@ class Control {
         this.createEffect()
     }
 
+    togglePause() {
+        if (this.container.paused) {
+            this.container.play()
+        }
+        else {
+            this.container.pause()
+        }
+    }
+
     insert(referenceNode, newNode) {
         referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
     }
@@ -63,7 +72,7 @@ class Control {
 }
 
 class Touch extends Control {
-    
+
     constructor(id, time, container, title, symbol) {
         super(id, time, container, title, symbol)
         this.createTouch()
@@ -125,6 +134,7 @@ let padL = new Touch('padL', -5, PLU_audio, '-5s', '↶')
 let padR = new Touch('padR', 5, PLU_audio, '+5s', '↷')
 pads.push(padL, padR)
 
+//This reposition() is used in setTimeout further down, do not delete
 function reposition() {
     padR.resizePad()
     padR.positionPadR()
@@ -133,7 +143,7 @@ function reposition() {
 }
 reposition()
 
-//onresize performance enhancer
+// Onresize performance enhancer
 let it
 window.onresize = function () {
     clearTimeout(it)
@@ -155,9 +165,19 @@ for (let i in pads) {
         if (elapsed < 500 && elapsed > 0) {
             pads[i].changeAudioTime(time)
         }
+        else { //one tap
+            but_back_5s.togglePause()
+        }
         lastTap = new Date().getTime()
     })
+
+    pads[i].pad.addEventListener('click', function (e) {
+        but_back_5s.togglePause()
+    })
 }
+
+//Bug fix for spacebar shortcut if search input is :focused
+searchEl = document.querySelector('#searchTop')
 
 //Keyboard Shortcuts
 document.onkeydown = function (e) {
@@ -173,11 +193,8 @@ document.onkeydown = function (e) {
     if (e.keyCode == '39' && !e.shiftKey) { //right
         but_forward_5s.changeAudioTime()
     }
-}
-
-//If fullscreen mode, hide controls
-document.addEventListener('fullscreenchange', (event) => {
-    if (document.fullscreenElement) {
-      console.log(`Element: ${document.fullscreenElement.id} entered full-screen mode.`)
+    if (e.keyCode == 32 && document.activeElement != searchEl) { //spacebar
+        e.preventDefault()
+        but_back_5s.togglePause()
     }
-});
+}
