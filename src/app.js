@@ -56,6 +56,10 @@ class Control {
             _this.effect.classList.remove('fade-in')
         }, 800)
     }
+
+    hide() {
+        this.classlist.toggle('hide')
+    }
 }
 
 class Touch extends Control {
@@ -129,7 +133,7 @@ function reposition() {
 }
 reposition()
 
-// onresize performance enhancer
+//onresize performance enhancer
 let it
 window.onresize = function () {
     clearTimeout(it)
@@ -170,3 +174,10 @@ document.onkeydown = function (e) {
         but_forward_5s.changeAudioTime()
     }
 }
+
+//If fullscreen mode, hide controls
+document.addEventListener('fullscreenchange', (event) => {
+    if (document.fullscreenElement) {
+      console.log(`Element: ${document.fullscreenElement.id} entered full-screen mode.`)
+    }
+});
