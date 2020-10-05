@@ -1,4 +1,12 @@
-.controls{
+.PLU_zoom .PLU_button{
+  position: absolute;
+  font-size: 10em;
+}
+.PLU_zoom body{
+  border: 10px solid red;
+}
+
+.PLU_controls{
   position: absolute;
   padding-left: 2px;
   background: rgba(0,0,0,.7);
@@ -21,7 +29,7 @@
   opacity: 0.9;
 }
 
-.touch {
+.PLU_touch {
     opacity: .5;
     position: absolute;
     top:0;

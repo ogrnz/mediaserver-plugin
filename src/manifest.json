@@ -11,7 +11,10 @@
 
   "content_scripts": [
     {
-      "matches": ["*://mediaserver.unige.ch/play/*"],
+      "matches": [
+        "*://mediaserver.unige.ch/play/*",
+        "*://*.zoom.us/*"
+      ],
       "js": ["app.js"],
       "css": ["style.css"]
     }
