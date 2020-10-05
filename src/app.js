@@ -106,13 +106,12 @@ class Touch extends Control {
 }
 
 const PLU_audio = (typeof document.getElementsByTagName('audio')[0] == 'undefined') ? document.getElementsByTagName('video')[0] : document.getElementsByTagName('audio')[0]
-const PLU_parentNode = document.getElementsByClassName('video-js')[0]
 
 let buttons = []
-let but_back_10s = new Control('PLU_bck', -10, PLU_audio, '-10s', '↺')
-let but_back_5s = new Control('PLU_bck_5', -5, PLU_audio, '-5s', '↶')
-let but_forward_5s = new Control('PLU_fwd_5', 5, PLU_audio, '+5s', '↷')
-let but_forward_10s = new Control('PLU_fwd', 10, PLU_audio, '+10s', '↻')
+let but_back_10s = new Control('PLU_bck', -10, PLU_audio, '-10s (shift + left)', '↺')
+let but_back_5s = new Control('PLU_bck_5', -5, PLU_audio, '-5s (left)', '↶')
+let but_forward_5s = new Control('PLU_fwd_5', 5, PLU_audio, '+5s (right)', '↷')
+let but_forward_10s = new Control('PLU_fwd', 10, PLU_audio, '+10s (shift + right)', '↻')
 buttons.push(but_back_10s, but_back_5s, but_forward_5s, but_forward_10s)
 
 //Detect click event on buttons
@@ -175,22 +174,31 @@ for (let i in pads) {
 //Bug fix for spacebar shortcut if search input is :focused
 searchEl = document.querySelector('#searchTop')
 
+//Resolve controls not working in Fullscreen issue
+let isFullscreen = false
+document.onfullscreenchange = (e) => { 
+    isFullscreen = !isFullscreen
+    if(isFullscreen) {
+        but_back_10s.container.focus()
+    }
+}
+
 //Keyboard Shortcuts
-document.onkeydown = function (e) {
+document.onkeydown = (e) => {
     if (e.shiftKey && e.keyCode == 37) { //shift + left
         but_back_10s.changeAudioTime()
     }
     if (e.shiftKey && e.keyCode == 39) { //shift + right
         but_forward_10s.changeAudioTime()
     }
-    if (e.keyCode == '37' && !e.shiftKey) { //left
+    if (e.keyCode == 37 && !e.shiftKey) { //left
         but_back_5s.changeAudioTime()
     }
-    if (e.keyCode == '39' && !e.shiftKey) { //right
+    if (e.keyCode == 39 && !e.shiftKey) { //right
         but_forward_5s.changeAudioTime()
     }
     if (e.keyCode == 32 && document.activeElement != searchEl) { //spacebar
         e.preventDefault()
         but_back_5s.togglePause()
-    }
+    }    
 }
