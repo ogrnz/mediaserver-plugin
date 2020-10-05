@@ -1,9 +1,12 @@
 .PLU_zoom .PLU_button{
-  position: absolute;
-  font-size: 10em;
+  position: relative;
+  bottom:-29em;
+  right:0;
+  font-size: 2em;
 }
-.PLU_zoom body{
-  border: 10px solid red;
+
+.PLU_zoom #PLU_bck_5{
+  border-right : 1px solid #0e71eb;;
 }
 
 .PLU_controls{
