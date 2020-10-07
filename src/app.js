@@ -6,6 +6,13 @@ class Control {
         this.symbol = symbol
         this.time = time
         this.container = container
+
+        this.cont_h = (this.container.offsetHeight != 0) 
+                        ? this.container.offsetHeight 
+                        : document.getElementById('video-131477').offsetHeight
+        this.cont_w = (this.container.offsetWidth != 0)
+                        ? this.container.offsetWidth
+                        : document.getElementById('video-131477').offsetWidth
     }
 
     setupButton() {
@@ -26,6 +33,10 @@ class Control {
         referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
     }
 
+    positionButton() {
+        this.button.style.bottom = '-' + this.cont_h + 'px'
+    }
+
     createButton() {      
         // Create buttons link
         this.button = document.createElement('a')
@@ -34,6 +45,8 @@ class Control {
         this.button.classList.add('PLU_button')
         this.button.href = '#'
         this.button.title = this.title
+
+        this.positionButton()
 
         // insert in DOM
         this.insert(this.container, this.button)
@@ -48,13 +61,9 @@ class Control {
         this.effect.classList.add('PLU_controls')
         this.effect.id = this.id + '_effect'
 
-        let h = this.container.offsetHeight
-        let w = this.container.offsetWidth
+        this.effect.style.top = (this.cont_h - 50) / 2 + 'px' 
+        this.effect.style.right = (this.cont_w - 50) / 2 + 'px' 
 
-        console.log(h, w)
-
-        this.effect.style.top = (h - 50) / 2 + 'px' 
-        this.effect.style.right = (w - 50) / 2 + 'px' 
         this.insert(this.container, this.effect)
 
         return this.effect
@@ -92,11 +101,8 @@ class Touch extends Control {
     }
 
     resizePad() {
-        let h = this.container.offsetHeight
-        let w = this.container.offsetWidth
-
-        this.pad.style.height = .8 * h + 'px'
-        this.pad.style.width = .6 * w / 2 + 'px'
+        this.pad.style.height = .8 * this.cont_h + 'px'
+        this.pad.style.width = .6 * this.cont_w / 2 + 'px'
     }
 
     positionPadR() {
@@ -112,18 +118,19 @@ class Touch extends Control {
     }
 }
 
-const PLU_audio = (typeof document.getElementsByTagName('audio')[0] == 'undefined') ? document.getElementsByTagName('video')[0] : document.getElementsByTagName('audio')[0]
+const media_element = (typeof document.getElementsByTagName('audio')[0] == 'undefined') ? document.getElementsByTagName('video')[0] : document.getElementsByTagName('audio')[0]
 
+console.log()
 // We're on Zoom
 if(window.location.hostname.includes('zoom')){
     document.getElementsByTagName('html')[0].classList.add('PLU_zoom')
 }
 
 let buttons = []
-let but_back_10s = new Control('PLU_bck', -10, PLU_audio, '-10s (shift + left)', '↺')
-let but_back_5s = new Control('PLU_bck_5', -5, PLU_audio, '-5s (left)', '↶')
-let but_forward_5s = new Control('PLU_fwd_5', 5, PLU_audio, '+5s (right)', '↷')
-let but_forward_10s = new Control('PLU_fwd', 10, PLU_audio, '+10s (shift + right)', '↻')
+let but_back_10s = new Control('PLU_bck', -10, media_element, '-10s (shift + left)', '↺')
+let but_back_5s = new Control('PLU_bck_5', -5, media_element, '-5s (left)', '↶')
+let but_forward_5s = new Control('PLU_fwd_5', 5, media_element, '+5s (right)', '↷')
+let but_forward_10s = new Control('PLU_fwd', 10, media_element, '+10s (shift + right)', '↻')
 buttons.push(but_back_10s, but_back_5s, but_forward_5s, but_forward_10s)
 
 //Detect click event on buttons
@@ -137,8 +144,8 @@ for (let i in buttons) {
 }
 
 let pads = []
-let padL = new Touch('PLU_padL', -5, PLU_audio, '-5s', '↶')
-let padR = new Touch('PLU_padR', 5, PLU_audio, '+5s', '↷')
+let padL = new Touch('PLU_padL', -5, media_element, '-5s', '↶')
+let padR = new Touch('PLU_padR', 5, media_element, '+5s', '↷')
 pads.push(padL, padR)
 
 //This reposition() is used in setTimeout further down, do not delete

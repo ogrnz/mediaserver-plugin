@@ -1,12 +1,24 @@
+.PLU_zoom #PLU_wrapper{
+  border:1px solid red;
+  width:100px;
+  position: relative;
+  height:10px;
+}
+
 .PLU_zoom .PLU_button{
   position: relative;
-  bottom:-29em;
   right:0;
   font-size: 2em;
+  margin:10px;
 }
 
 .PLU_zoom #PLU_bck_5{
   border-right : 1px solid #0e71eb;;
+}
+
+.PLU_zoom #vjs_video_3 {
+  height: 94%;
+  width: 94%;
 }
 
 .PLU_controls{
