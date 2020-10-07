@@ -48,6 +48,13 @@ class Control {
         this.effect.classList.add('PLU_controls')
         this.effect.id = this.id + '_effect'
 
+        let h = this.container.offsetHeight
+        let w = this.container.offsetWidth
+
+        console.log(h, w)
+
+        this.effect.style.top = (h - 50) / 2 + 'px' 
+        this.effect.style.right = (w - 50) / 2 + 'px' 
         this.insert(this.container, this.effect)
 
         return this.effect
@@ -180,7 +187,7 @@ for (let i in pads) {
 //Bug fix for spacebar shortcut if search input is :focused
 searchEl = document.querySelector('#searchTop')
 
-//Resolve controls not working in Fullscreen issue
+//Resolve controls not working in Fullscreen
 let isFullscreen = false
 document.onfullscreenchange = (e) => { 
     isFullscreen = !isFullscreen
