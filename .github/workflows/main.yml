@@ -1,0 +1,14 @@
+name: Zip
+
+on: [ push ]
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Archive Release
+      uses: thedoctor0/zip-release@master
+      with:
+        filename: 'additional_controls_release.zip'
+        path: "src/"
