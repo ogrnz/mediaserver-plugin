@@ -1,6 +1,6 @@
-# Mediaserver additional controls plugin
+# Additional Controls (Mediaserver/Zoom)
 
-Adds youtube like keyboard controls to Unige's Mediaserver website.
+This plugin adds youtube-like keyboard controls to Unige's Mediaserver website and Zoom replay service.
 
 ## Installation
 Chrome : https://chrome.google.com/webstore/detail/mediaserver-forward-back/ccpfhfcdbfiheikdoleanbobhaoioked  
@@ -17,4 +17,6 @@ Controls:
  On a touchscreen, double tap on the right/left side of the video player to seek forward/backward 5s.
 
 IMPORTANT: 
-This plugin was only made for and will only work on that URL: *//mediaserver.unige.ch/play/
+This plugin was only made for and will only work on those URLs: 
+- *//mediaserver.unige.ch/play/
+- "*://*.zoom.us/*"
