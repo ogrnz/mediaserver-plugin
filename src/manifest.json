@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "MediaServer Unige controls",
+  "name": "Additional Controls (Mediaserver/Zoom)",
   "version": "2.3.2",
 
-  "description": "Adds youtube-like keyboard controls to Unige's Mediaserver website or to Zoom replay service.",
+  "description": "Adds youtube-like keyboard controls to Unige's Mediaserver website and to Zoom replay service.",
 
  "icons": {
       "128": "icon.png"
