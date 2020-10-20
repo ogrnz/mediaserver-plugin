@@ -1,14 +1,15 @@
 name: Zip
 
-on: [ push ]
-
+on:
+  push:
+    branches:
+      - master
 jobs:
-  archive:
+  build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Archive Release
-      uses: thedoctor0/zip-release@master
-      with:
-        filename: 'additional_controls_release.zip'
-        path: "src"
+    - uses: actions/checkout@v1
+    - name: Zip Folder
+      run: zip -r release.zip "src"
+    - name: Release to Github
+      run: echo "Release"
